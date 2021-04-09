@@ -4,18 +4,137 @@
   box-sizing: border-box;
 }
 
-body {
-  background: rgb(192, 218, 241);
-}
+/* body {
+  background: rgb(226, 229, 231);
+} */
 
 h1 {
   display: flex;
   flex-direction: row;
   justify-content: center;
   text-align: center;
-  background: rgb(6, 104, 6);
-  color: rgb(192, 218, 241);
   font-family: "Hind", sans-serif;
   font-size: 2.5rem;
   font-weight: 50;
+}
+
+.section-1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  margin-top: 1rem;
+  border: 3px solid rgb(192, 191, 191);
+  margin: auto;
+  margin-top: 1rem;
+  width: 65%;
+  border-radius: 10px;
+}
+
+.inner-1-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  text-align: center;
+  width: 90%;
+  margin: auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.expense-name {
+  background: rgb(231, 228, 228);
+  color: rgb(92, 87, 87);
+  font-family: "Hind", sans-serif;
+  font-weight: 10;
+  font-size: medium;
+  outline: none;
+  border: none;
+  padding-left: 0.5rem;
+  width: 20vw;
+  height: 4vh;
+  border-radius: 5px;
+}
+
+.amount {
+  margin-left: 1%;
+  background: rgb(231, 228, 228);
+  color: rgb(92, 87, 87);
+  font-family: "Hind", sans-serif;
+  font-weight: 10;
+  font-size: medium;
+  outline: none;
+  border: none;
+  padding-left: 0.5rem;
+  width: 10vw;
+  height: 4vh;
+  border-radius: 5px;
+}
+
+.select-type {
+  margin-left: 1%;
+  background: rgb(231, 228, 228);
+  color: rgb(92, 87, 87);
+  font-family: "Hind", sans-serif;
+  font-weight: 10;
+  font-size: medium;
+  outline: none;
+  border: none;
+  padding-left: 0.5rem;
+  width: 7vw;
+  height: 4vh;
+  border-radius: 5px;
+}
+
+.date {
+  margin-left: 1%;
+  background: rgb(231, 228, 228);
+  color: rgb(92, 87, 87);
+  font-family: "Hind", sans-serif;
+  font-weight: 10;
+  font-size: medium;
+  outline: none;
+  border: none;
+  padding-left: 0.5rem;
+  width: 15vw;
+  height: 4vh;
+  border-radius: 5px;
+}
+
+.inner-2-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  text-align: center;
+  margin-bottom: 1rem;
+  width: 32.5%;
+  margin: auto;
+}
+
+.Expense-btn {
+  background: rgb(248, 96, 85);
+  color: rgb(255, 255, 255);
+  font-family: "Hind", sans-serif;
+  font-weight: 10;
+  font-size: medium;
+  outline: none;
+  border: none;
+  width: 10vw;
+  height: 4vh;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+}
+
+.Income-btn {
+  background: rgb(50 202 50);
+  color: rgb(255, 255, 255);
+  font-family: "Hind", sans-serif;
+  font-weight: 10;
+  font-size: medium;
+  outline: none;
+  border: none;
+  width: 10vw;
+  height: 4vh;
+  border-radius: 5px;
+  margin-bottom: 1rem;
 }
