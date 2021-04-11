@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Hind:wght@600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/styles.css">
   <title>Expense Tracker App</title>
 </head>
 <body>
@@ -14,30 +14,55 @@
     <h1>Expense Tracker App</h1>
   </div>
   <div class="section-1">
-    <!-- <div class="inner-1-div">
-      <input type="text" name="" class="budget-input" id="budget" placeholder="Your budget">
-      <button class="budget-btn" type="submit">submit</button>
-    </div> -->
-    <div class="inner-1-div">
-      <input type="text" name="" class="expense-name" id="expense-name" placeholder="Expense name..">
-      <input type="text" name="" class="amount" id="amount" placeholder="Amount">
 
-      <select class="select-type">
+    <div class="inner-1-div">
+      <input type="text" name="" class="name" id="input-name" placeholder="name..">
+      <input type="text" name="" class="amount" id="input-amount" placeholder="Amount">
+      <select class="select-type" id="select-type">
         <option value="cash">Cash</option>
         <option value="credit">Credit</option>
         <option value="other">Other</option>
       </select>
-      <input type="date" name="" class="date" id="date">
+      <input type="date" name="" class="date" id="input-date">
     </div>
-    <div class="inner-2-div">
-      
-      <button class="Expense-btn" type="submit">Add Expense</button>
-      <button class="Income-btn" type="submit">Add Income</button>
-    </div>
-  </div>
-  <div>
 
+    <div class="inner-2-div">
+      <button class="income-btn" id="income-btn" type="submit">Add Income</button>
+      <button class="expense-btn" id="expense-btn" type="submit">Add Expense</button>
+    </div>
   </div>
-  
+  <div class="section-2">
+    <span class="balance">Balance</span>
+  </div>
+
+  <div class="section-3">
+    <div class="income-div-tb">
+      <table class="income-table" id="income-table">
+        <tr class="income-tr">
+          <th>Income name</th>
+          <th id="amount">Amount</th>
+          <th id="peyment">peyment</th>
+          <th>Date</th>
+          <th></th>
+          <th></th>
+        </tr>
+        
+      </table>
+    </div>
+    <div class="expense-div-tb">
+      <table class="expense-table" id="expense-table">
+        <tr class="expense-tr">
+          <th>Expense name</th>
+          <th id="amount">Amount</th>
+          <th id="peyment">peyment</th>
+          <th>Date</th>
+          <th></th>
+          <th></th>
+        </tr>
+        
+      </table>
+    </div>
+  </div>
+  <script src="./index.js"></script>
 </body>
 </html>

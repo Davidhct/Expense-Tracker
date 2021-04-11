@@ -38,7 +38,7 @@ h1 {
   margin-bottom: 1rem;
 }
 
-.expense-name {
+.name {
   background: rgb(231, 228, 228);
   color: rgb(92, 87, 87);
   font-family: "Hind", sans-serif;
@@ -107,7 +107,7 @@ h1 {
   margin: auto;
 }
 
-.Expense-btn {
+.expense-btn {
   background: rgb(248, 96, 85);
   color: rgb(255, 255, 255);
   font-family: "Hind", sans-serif;
@@ -119,9 +119,10 @@ h1 {
   height: 4vh;
   border-radius: 5px;
   margin-bottom: 1rem;
+  cursor: pointer;
 }
 
-.Income-btn {
+.income-btn {
   background: rgb(50 202 50);
   color: rgb(255, 255, 255);
   font-family: "Hind", sans-serif;
@@ -133,4 +134,76 @@ h1 {
   height: 4vh;
   border-radius: 5px;
   margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+.section-2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+  width: 10vw;
+  height: 10vh;
+  margin: auto;
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+  background: rgb(231, 228, 228);
+  border-radius: 5px;
+}
+.balance {
+  background: rgb(179, 178, 178);
+  width: 100vw;
+  height: 3vh;
+  color: rgb(92, 87, 87);
+  font-family: "Hind", sans-serif;
+  font-weight: 10;
+  font-size: medium;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.section-3 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  text-align: center;
+  width: 95vw;
+  margin: auto;
+  /* border: 2px solid red; */
+}
+
+.income-table,
+.expense-table {
+  font-family: "Hind", sans-serif;
+  border-collapse: collapse;
+  width: 45vw;
+  /* height: 10vh; */
+  /* border: 2px solid blue; */
+}
+th,
+td {
+  text-align: left;
+  padding-left: 0.5rem;
+  /* border: 2px solid blue; */
+}
+
+.income-tr {
+  background: rgb(112, 211, 112);
+}
+
+.expense-tr {
+  background: rgb(235, 110, 101);
+}
+
+#amount,
+#peyment {
+  width: 6vw;
+}
+
+.edit-btn,
+.close-btn {
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer;
 }
