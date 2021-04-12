@@ -20,9 +20,9 @@ h1 {
   justify-content: center;
   text-align: center;
   margin-top: 1rem;
-  border: 3px solid rgb(192, 191, 191);
+  /* border: 3px solid rgb(192, 191, 191); */
   margin: auto;
-  margin-top: 1rem;
+  /* margin-bottom: 1rem; */
   width: 65%;
   border-radius: 10px;
 }
@@ -35,7 +35,7 @@ h1 {
   width: 90%;
   margin: auto;
   margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 3rem;
 }
 
 .name {
@@ -50,6 +50,16 @@ h1 {
   width: 20vw;
   height: 4vh;
   border-radius: 5px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+.amount::-webkit-inner-spin-button,
+.amount::-webkit-outer-spin-button {
+  appearance: none;
+}
+/* Firefox */
+.amount[type="number"] {
+  -moz-appearance: textfield;
 }
 
 .amount {
@@ -102,7 +112,7 @@ h1 {
   flex-direction: row;
   justify-content: space-around;
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 3rem;
   width: 32.5%;
   margin: auto;
 }
@@ -118,7 +128,6 @@ h1 {
   width: 10vw;
   height: 4vh;
   border-radius: 5px;
-  margin-bottom: 1rem;
   cursor: pointer;
 }
 
@@ -133,33 +142,45 @@ h1 {
   width: 10vw;
   height: 4vh;
   border-radius: 5px;
-  margin-bottom: 1rem;
   cursor: pointer;
 }
 
 .section-2 {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   text-align: center;
   width: 10vw;
-  height: 10vh;
   margin: auto;
   margin-top: 2rem;
   margin-bottom: 4rem;
-  background: rgb(231, 228, 228);
+  /* background: rgb(231, 228, 228); */
   border-radius: 5px;
 }
 .balance {
-  background: rgb(179, 178, 178);
-  width: 100vw;
-  height: 3vh;
-  color: rgb(92, 87, 87);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+  /* background: rgb(179, 178, 178); */
+  /* color: rgb(92, 87, 87); */
+  font-family: "Hind", sans-serif;
+  font-size: 24px;
+  font-weight: 10;
+
+  /* border-top-left-radius: 5px;
+  border-top-right-radius: 5px; */
+}
+
+#span-balance {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+
   font-family: "Hind", sans-serif;
   font-weight: 10;
-  font-size: medium;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  font-size: 24px;
 }
 
 .section-3 {
@@ -198,6 +219,20 @@ td {
 #amount,
 #peyment {
   width: 6vw;
+}
+
+#date {
+  text-align: center;
+}
+
+.input-name-td,
+.input-amount-td,
+.select-type-td,
+.input-date-td {
+  font-family: "Hind", sans-serif;
+  border: none;
+  outline: none;
+  background: none;
 }
 
 .edit-btn,
