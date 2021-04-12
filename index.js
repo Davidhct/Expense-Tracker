@@ -1,12 +1,18 @@
 
 let i = 0;
-let e = 0;
+let t = 0;
+let incomeIndex = 0;
+let expenseIndex = 0;
+let tmpBalance = 0;
 
 
+document.getElementById('expense-btn').addEventListener('click', checkInput)
+document.getElementById('income-btn').addEventListener('click', checkInput)
 
 if(window.localStorage.getItem("incomeStorage") == undefined){
+    console.log(window.localStorage.getItem("incomeStorage") == undefined);
     let incomeStorage = [];
-    
+
     localStorage.setItem("incomeStorage", JSON.stringify(incomeStorage));
 }
 
@@ -16,8 +22,13 @@ if(window.localStorage.getItem("expenseStorage") == undefined){
     localStorage.setItem("expenseStorage", JSON.stringify(expenseStorage));
 }
 
-console.log(localStorage.getItem("incomeStorage"));
-console.log(localStorage.getItem("expenseStorage"));
+if(window.localStorage.getItem("balance") == undefined){
+  let balance;
+
+  localStorage.setItem("balance", JSON.stringify(balance));
+}
+
+
 
 let incomeArray = localStorage.getItem("incomeStorage");
 let incomeStorage = JSON.parse(incomeArray);
@@ -25,22 +36,33 @@ let incomeStorage = JSON.parse(incomeArray);
 let expenseArray = localStorage.getItem("expenseStorage");
 let expenseStorage = JSON.parse(expenseArray);
 
+let getBalance = localStorage.getItem("balance");
+let balance = JSON.parse(getBalance);
+
+let spanBalance = document.getElementById('span-balance');
 
 // load the localstorage in the todo app
 onload = function() {
   
+  if (i === 0 && t === 0){
+    balance = 0;
+    spanBalance.innerHTML = balance;
+    localStorage.setItem("balance", JSON.stringify(balance));
+  }
   while (i < incomeStorage.length) {
     let newTr = createNewTr(incomeStorage[i]); 
     document.getElementById('income-table').appendChild(newTr);
     i++  
   }
-  while (e < expenseStorage.length) {
-    let newTr = createNewTr(expenseStorage[e]); 
+  while (t < expenseStorage.length) {
+    let newTr = createNewTr(expenseStorage[t]); 
     document.getElementById('expense-table').appendChild(newTr);
-    e++  
+    t++  
   }
 }
-document.getElementById('income-btn').addEventListener('click', function() {
+
+
+function checkInput() {
   let inputName = document.getElementById('input-name').value.trim();
   let inputAmount = document.getElementById('input-amount').value.trim();
   let inputSelect = document.getElementById('select-type').value;
@@ -49,59 +71,54 @@ document.getElementById('income-btn').addEventListener('click', function() {
   if (inputName === '' || inputAmount === '' || inputDate === '') {
     alert("You missed one of the input lines! ")
   } else {
-    incomeObj = {
-      name: inputName,
-      amount: inputAmount,
-      type: inputSelect,
-      date: inputDate
+    if (this.id === 'income-btn') {
+      incomeObj = {
+        name: inputName,
+        amount: inputAmount,
+        type: inputSelect,
+        date: inputDate
+      } 
+      // tmpBalance = tmpBalance + inputAmount
+      // balance = tmpBalance;
+      // spanBalance.innerHTML = balance;
+      // localStorage.setItem("balance", JSON.stringify(balance));
+
+
+      incomeStorage.push(incomeObj);
+      localStorage.setItem("incomeStorage", JSON.stringify(incomeStorage));
+
+      
+      let newTr = createNewTr(incomeStorage[i]); 
+      console.log(newTr);
+      document.getElementById('income-table').appendChild(newTr);
+      i++
+    } else {
+      
+      expenseObj = {
+        name: inputName,
+        amount: inputAmount,
+        type: inputSelect,
+        date: inputDate
+      }
+      // tmpBalance = tmpBalance - inputAmount
+      // balance = tmpBalance;
+      // spanBalance.innerHTML = balance;
+      // localStorage.setItem("balance", JSON.stringify(balance));
+      
+      expenseStorage.push(expenseObj);
+      localStorage.setItem("expenseStorage", JSON.stringify(expenseStorage));
+
+    
+      let newTr = createNewTr(expenseStorage[t]); 
+      console.log(newTr);
+      document.getElementById('expense-table').appendChild(newTr);
+      t++;
     }
-    
-    incomeStorage.push(incomeObj);
-    localStorage.setItem("incomeStorage", JSON.stringify(incomeStorage));
-
-    
-    let newTr = createNewTr(incomeStorage[i]); 
-    console.log(newTr);
-    document.getElementById('income-table').appendChild(newTr);
-    
-
-    i++
   }
   document.getElementById('input-name').value = '';
   document.getElementById('input-amount').value = '';
   document.getElementById('input-date').value = '';
-});
-
-document.getElementById('expense-btn').addEventListener('click', function() {
-  let inputName = document.getElementById('input-name').value.trim();
-  let inputAmount = document.getElementById('input-amount').value.trim();
-  let inputSelect = document.getElementById('select-type').value;
-  let inputDate = document.getElementById('input-date').value.trim();
-  
-  if (inputName === '' || inputAmount === '' || inputDate === '') {
-    alert("You missed one of the input lines! ")
-  } else {
-    expenseObj = {
-      name: inputName,
-      amount: inputAmount,
-      type: inputSelect,
-      date: inputDate
-    }
-    expenseStorage.push(expenseObj);
-    localStorage.setItem("expenseStorage", JSON.stringify(expenseStorage));
-
-    
-    let newTr = createNewTr(expenseStorage[e]); 
-    console.log(newTr);
-    document.getElementById('expense-table').appendChild(newTr);
-    
-
-    e++;
-  }
-  document.getElementById('input-name').value = '';
-  document.getElementById('input-amount').value = '';
-  document.getElementById('input-date').value = '';
-});
+}
 
 
 
@@ -114,17 +131,74 @@ function createNewTr(input) {
   let tdedit = document.createElement('td');
   let tdClose = document.createElement('td');
 
+  let inputNameTd = document.createElement('input');
+  inputNameTd.type = 'text';
+  inputNameTd.value = input.name;
+  inputNameTd.classList.add('input-name-td');
+  inputNameTd.disabled = true;
+
+  let inputAmountTd = document.createElement('input');
+  inputAmountTd.type = 'number';
+  inputAmountTd.value = input.amount;
+  
+  inputAmountTd.classList.add('input-amount-td');
+  inputAmountTd.disabled = true;
+
+  let selectTypeTd = document.createElement('select');
+  selectTypeTd.classList.add('select-type-td')
+  selectTypeTd.disabled = true;
+  let optionType_1 = document.createElement('option');
+  let optionType_2 = document.createElement('option');
+  let optionType_3 = document.createElement('option');
+  
+  if (input.type === 'cash') {
+    optionType_1.value = 'cash';
+    optionType_2.value = 'credit';
+    optionType_3.value = 'other';
+
+    optionType_1.innerHTML = 'Cash';
+    optionType_2.innerHTML = 'Credit';
+    optionType_3.innerHTML = 'Other';
+  } else if (input.type === 'credit') {
+    optionType_1.value = 'credit';
+    optionType_2.value = 'cash';
+    optionType_3.value = 'other';
+
+    optionType_1.innerHTML = 'Credit';
+    optionType_2.innerHTML = 'Cash';
+    optionType_3.innerHTML = 'Other';
+  } else {
+    optionType_1.value = 'other';
+    optionType_2.value = 'cash';
+    optionType_3.value = 'credit';
+
+    optionType_1.innerHTML = 'Other';
+    optionType_2.innerHTML = 'Cash';
+    optionType_3.innerHTML = 'Credit';
+  }
+  
+
+  selectTypeTd.appendChild(optionType_1);
+  selectTypeTd.appendChild(optionType_2);
+  selectTypeTd.appendChild(optionType_3);
+
+  let inputDateTd = document.createElement('input');
+  inputDateTd.type = 'Date';
+  inputDateTd.value = input.date;
+  inputDateTd.classList.add('input-date-td');
+  inputDateTd.disabled = true;
+
   let closeBtn = createCloseButton();
-  let editBtn = createEditButton();
+  let editBtn = createEditButton(inputNameTd, inputAmountTd, selectTypeTd, inputDateTd);
 
   tdedit.appendChild(editBtn);
   tdClose.appendChild(closeBtn);
 
-  console.log(input);
-  tdName.innerHTML = input.name;
-  tdAmount.innerHTML = input.amount;
-  tdType.innerHTML = input.type;
-  tdDate.innerHTML = input.date;
+  // console.log(input);
+  tdName.appendChild(inputNameTd);
+  tdAmount.appendChild(inputAmountTd);
+  tdType.appendChild(selectTypeTd);
+  tdDate.appendChild(inputDateTd);
 
   tr.appendChild(tdName);
   tr.appendChild(tdAmount);
@@ -152,32 +226,36 @@ function createCloseButton() {
   
 }
 
-function deleteItem(e) {
+function deleteItem() {
   
-    if (this.parentNode.parentNode.parentNode.classList.contains('income-table') ){
-      
+  if (this.parentNode.parentNode.parentNode.classList.contains('income-table') ){
+    this.parentNode.parentNode.remove()
+    
+    let index = incomeStorage.indexOf(this.parentNode.parentNode)
+    
+
+    incomeStorage.splice(index, 1);
+    localStorage.setItem("incomeStorage", JSON.stringify(incomeStorage));
+    i--;
+    
+  } else if (this.parentNode.parentNode.parentNode.classList.contains('expense-table') ){
       this.parentNode.parentNode.remove();
 
-      let index = incomeStorage.indexOf(this.parentNode.parentNode)
-      incomeStorage.splice(index, 1);
-      localStorage.setItem("incomeStorage", JSON.stringify(incomeStorage));
-      i--;
-      console.log(localStorage);
-      
-    }
-    if (this.parentNode.parentNode.parentNode.classList.contains('expense-table') ){
-      console.log(this.parentNode.parentNode);
-      this.parentNode.parentNode.remove();
       let index = expenseStorage.indexOf(this.parentNode.parentNode);
+
       expenseStorage.splice(index, 1);
       localStorage.setItem("expenseStorage", JSON.stringify(expenseStorage));
-      e--;
-      console.log(localStorage);
+      t--;
+      
+    }
+    if (i === 0 && t === 0) {
+      balance = 0;
+      localStorage.setItem("balance", JSON.stringify(balance));
     }
 }
 
 
-function createEditButton() {
+function createEditButton(inputNameTd, inputAmountTd, selectTypeTd, inputDateTd) {
   let editBtn = document.createElement('button');
   let imgEdit = document.createElement('img');
   let imgEditting = document.createElement('img');
@@ -188,8 +266,75 @@ function createEditButton() {
   editBtn.appendChild(imgEdit);
   editBtn.classList.add('edit-btn')
 
-  // editItem(editBtn, input, imgEdit, imgEditting);
+  editItem(editBtn, inputNameTd, inputAmountTd, selectTypeTd, inputDateTd, imgEdit, imgEditting);
   
   return editBtn;
   
 } 
+
+
+
+function editItem(editBtn, inputNameTd, inputAmountTd, selectTypeTd, inputDateTd, imgEdit, imgEditting) {
+  
+  editBtn.addEventListener('click', function(e) {
+    if (this.parentNode.parentNode.parentNode.id === 'income-table') {
+      for (let k = 0; k < incomeStorage.length; k++) {
+        if (incomeStorage[k].name === inputNameTd.value) {
+          incomeIndex = k;
+        }
+      }
+    } else {
+      for (let k = 0; k < expenseStorage.length; k++)  {
+        console.log(expenseStorage[k]);
+        if (expenseStorage[k].name === inputNameTd.value) {
+          expenseIndex = k;
+        }
+      }
+    }
+
+    if (inputNameTd.disabled === true) {
+      
+      inputNameTd.disabled = !inputNameTd.disabled;
+      inputAmountTd.disabled = !inputAmountTd.disabled;
+      selectTypeTd.disabled = !selectTypeTd.disabled;
+      inputDateTd.disabled = !inputDateTd.disabled;
+      
+      editBtn.removeChild(imgEdit)
+      editBtn.appendChild(imgEditting);
+        
+    } else {
+      inputNameTd.disabled = !inputNameTd.disabled;
+      inputAmountTd.disabled = !inputAmountTd.disabled;
+      selectTypeTd.disabled = !selectTypeTd.disabled;
+      inputDateTd.disabled = !inputDateTd.disabled;
+        
+          
+      editBtn.removeChild(imgEditting);
+      editBtn.appendChild(imgEdit); 
+      
+      if (this.parentNode.parentNode.parentNode.id === 'income-table') {
+        
+        incomeStorage[incomeIndex].name = inputNameTd.value;
+        incomeStorage[incomeIndex].amount = inputAmountTd.value;
+        incomeStorage[incomeIndex].type = selectTypeTd.value;
+        incomeStorage[incomeIndex].date = inputDateTd.value;
+        localStorage.setItem("incomeStorage", JSON.stringify(incomeStorage))
+      } 
+      if (this.parentNode.parentNode.parentNode.id === 'expense-table') {
+        
+        expenseStorage[expenseIndex].name = inputNameTd.value;
+        expenseStorage[expenseIndex].amount = inputAmountTd.value;
+        expenseStorage[expenseIndex].type = selectTypeTd.value;
+        expenseStorage[expenseIndex].date = inputDateTd.value;
+        localStorage.setItem("expenseStorage", JSON.stringify(expenseStorage));
+      }
+    }
+    
+  },false); 
+  
+  
+}
+
+
+  
+  
