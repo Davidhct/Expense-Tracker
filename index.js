@@ -55,7 +55,7 @@ onload = function() {
 
     updateBalance('income-btn', incomeStorage[i].amount);
     
-    document.getElementById('income-table').appendChild(newTr);
+    document.getElementById('income-tbody').appendChild(newTr);
     i++  
   }
   while (t < expenseStorage.length) {
@@ -63,7 +63,7 @@ onload = function() {
     
     updateBalance('expense-btn', expenseStorage[t].amount);
     
-    document.getElementById('expense-table').appendChild(newTr);
+    document.getElementById('expense-tbody').appendChild(newTr);
     t++  
   }
   spanBalance.innerHTML = balance;
@@ -94,8 +94,7 @@ function checkInput() {
 
       let newTr = createNewTr(incomeStorage[i]); 
 
-      newTr.id = 'income-tr-'.concat(i);
-      document.getElementById('income-table').appendChild(newTr);
+      document.getElementById('income-tbody').appendChild(newTr);
       i++
     } else {
       
@@ -113,8 +112,7 @@ function checkInput() {
 
       let newTr = createNewTr(expenseStorage[t]); 
       
-      newTr.id = 'expense-tr-'.concat(t);
-      document.getElementById('expense-table').appendChild(newTr);
+      document.getElementById('expense-tbody').appendChild(newTr);
       t++;
     }
   }

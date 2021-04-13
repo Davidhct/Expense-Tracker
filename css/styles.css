@@ -188,19 +188,27 @@ h1 {
   flex-direction: row;
   justify-content: space-between;
   text-align: center;
-  width: 95vw;
+  position: relative;
   margin: auto;
+  width: 95vw;
+
   /* border: 2px solid red; */
 }
+/* .income-table {
+  height: 200px;
+  overflow: auto;
+} */
 
 .income-table,
 .expense-table {
   font-family: "Hind", sans-serif;
   border-collapse: collapse;
   width: 45vw;
+
   /* height: 10vh; */
   /* border: 2px solid blue; */
 }
+
 th,
 td {
   text-align: left;
@@ -214,6 +222,7 @@ td {
 
 .expense-tr {
   background: rgb(235, 110, 101);
+  /* overflow: auto; */
 }
 
 #amount,
@@ -248,7 +257,7 @@ td {
   outline: none;
   background: none;
   cursor: pointer;
-  position: fixed;
+  position: absolute;
 }
 
 #delete {
