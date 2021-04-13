@@ -3,7 +3,8 @@ let i = 0;
 let t = 0;
 let incomeIndex = 0;
 let expenseIndex = 0;
-let tmpBalance = 0;
+let tmpIncomBalance = 0;
+let tmpExpenseBalance = 0;
 
 
 document.getElementById('expense-btn').addEventListener('click', checkInput)
@@ -41,24 +42,34 @@ let balance = JSON.parse(getBalance);
 
 let spanBalance = document.getElementById('span-balance');
 
+
 // load the localstorage in the todo app
 onload = function() {
   
   if (i === 0 && t === 0){
     balance = 0;
+    tmpIncomeBalance = 0;
+    tmpExpenseBalance = 0;
     spanBalance.innerHTML = balance;
     localStorage.setItem("balance", JSON.stringify(balance));
   }
   while (i < incomeStorage.length) {
     let newTr = createNewTr(incomeStorage[i]); 
+
+    updateBalance('income-btn', incomeStorage[i].amount);
+    
     document.getElementById('income-table').appendChild(newTr);
     i++  
   }
   while (t < expenseStorage.length) {
-    let newTr = createNewTr(expenseStorage[t]); 
+    let newTr = createNewTr(expenseStorage[t]);
+    
+    updateBalance('expense-btn', expenseStorage[t].amount);
+    
     document.getElementById('expense-table').appendChild(newTr);
     t++  
   }
+  spanBalance.innerHTML = balance;
 }
 
 
@@ -78,18 +89,15 @@ function checkInput() {
         type: inputSelect,
         date: inputDate
       } 
-      // tmpBalance = tmpBalance + inputAmount
-      // balance = tmpBalance;
-      // spanBalance.innerHTML = balance;
-      // localStorage.setItem("balance", JSON.stringify(balance));
-
-
+    
       incomeStorage.push(incomeObj);
       localStorage.setItem("incomeStorage", JSON.stringify(incomeStorage));
-
       
+      updateBalance(this.id, incomeObj.amount);
+
       let newTr = createNewTr(incomeStorage[i]); 
-      console.log(newTr);
+
+      newTr.id = 'income-tr-'.concat(i);
       document.getElementById('income-table').appendChild(newTr);
       i++
     } else {
@@ -100,17 +108,15 @@ function checkInput() {
         type: inputSelect,
         date: inputDate
       }
-      // tmpBalance = tmpBalance - inputAmount
-      // balance = tmpBalance;
-      // spanBalance.innerHTML = balance;
-      // localStorage.setItem("balance", JSON.stringify(balance));
-      
+
       expenseStorage.push(expenseObj);
       localStorage.setItem("expenseStorage", JSON.stringify(expenseStorage));
 
-    
+      updateBalance(this.id, expenseObj.amount);
+
       let newTr = createNewTr(expenseStorage[t]); 
-      console.log(newTr);
+      
+      newTr.id = 'expense-tr-'.concat(t);
       document.getElementById('expense-table').appendChild(newTr);
       t++;
     }
@@ -188,7 +194,7 @@ function createNewTr(input) {
   inputDateTd.classList.add('input-date-td');
   inputDateTd.disabled = true;
 
-  let closeBtn = createCloseButton();
+  let closeBtn = createCloseButton(input);
   let editBtn = createEditButton(inputNameTd, inputAmountTd, selectTypeTd, inputDateTd);
 
   tdedit.appendChild(editBtn);
@@ -212,7 +218,7 @@ function createNewTr(input) {
 }
 
 
-function createCloseButton() {
+function createCloseButton(input) {
   let closeBtn = document.createElement('button');
   let img = document.createElement('img');
   img.src = './css/images/delete_icon.png'
@@ -220,20 +226,23 @@ function createCloseButton() {
   closeBtn.classList.add('close-btn')
   closeBtn.id = 'close-btn'
 
-  closeBtn.addEventListener('click', deleteItem);
+  deleteItem(closeBtn, input);
+  
 
   return closeBtn;
   
 }
 
-function deleteItem() {
+function deleteItem(closeBtn, input) {
+  closeBtn.addEventListener('click', function() {
+    if (this.parentNode.parentNode.parentNode.classList.contains('income-table') ){
   
-  if (this.parentNode.parentNode.parentNode.classList.contains('income-table') ){
     this.parentNode.parentNode.remove()
     
-    let index = incomeStorage.indexOf(this.parentNode.parentNode)
+    let index = incomeStorage.indexOf(input)
     
-
+    updateBalance('expense-btn', incomeStorage[index].amount);
+    
     incomeStorage.splice(index, 1);
     localStorage.setItem("incomeStorage", JSON.stringify(incomeStorage));
     i--;
@@ -241,7 +250,9 @@ function deleteItem() {
   } else if (this.parentNode.parentNode.parentNode.classList.contains('expense-table') ){
       this.parentNode.parentNode.remove();
 
-      let index = expenseStorage.indexOf(this.parentNode.parentNode);
+      let index = expenseStorage.indexOf(input);
+
+      updateBalance('income-btn', expenseStorage[index].amount);
 
       expenseStorage.splice(index, 1);
       localStorage.setItem("expenseStorage", JSON.stringify(expenseStorage));
@@ -249,9 +260,10 @@ function deleteItem() {
       
     }
     if (i === 0 && t === 0) {
-      balance = 0;
-      localStorage.setItem("balance", JSON.stringify(balance));
+      updateBalance('reset', '0');
     }
+  });
+  
 }
 
 
@@ -277,6 +289,7 @@ function createEditButton(inputNameTd, inputAmountTd, selectTypeTd, inputDateTd)
 function editItem(editBtn, inputNameTd, inputAmountTd, selectTypeTd, inputDateTd, imgEdit, imgEditting) {
   
   editBtn.addEventListener('click', function(e) {
+  
     if (this.parentNode.parentNode.parentNode.id === 'income-table') {
       for (let k = 0; k < incomeStorage.length; k++) {
         if (incomeStorage[k].name === inputNameTd.value) {
@@ -313,19 +326,37 @@ function editItem(editBtn, inputNameTd, inputAmountTd, selectTypeTd, inputDateTd
       editBtn.appendChild(imgEdit); 
       
       if (this.parentNode.parentNode.parentNode.id === 'income-table') {
+        let tmp = incomeStorage[incomeIndex].amount;
         
         incomeStorage[incomeIndex].name = inputNameTd.value;
         incomeStorage[incomeIndex].amount = inputAmountTd.value;
         incomeStorage[incomeIndex].type = selectTypeTd.value;
         incomeStorage[incomeIndex].date = inputDateTd.value;
+
+        let before = parseInt(tmp, 10);
+        let after = parseInt(incomeStorage[incomeIndex].amount, 10);
+
+        after = before - after;
+
+        updateBalance('expense-btn', after);
+
         localStorage.setItem("incomeStorage", JSON.stringify(incomeStorage))
       } 
       if (this.parentNode.parentNode.parentNode.id === 'expense-table') {
-        
+        let tmp = expenseStorage[expenseIndex].amount;
+
         expenseStorage[expenseIndex].name = inputNameTd.value;
         expenseStorage[expenseIndex].amount = inputAmountTd.value;
         expenseStorage[expenseIndex].type = selectTypeTd.value;
         expenseStorage[expenseIndex].date = inputDateTd.value;
+
+        let before = parseInt(tmp, 10);
+        let after = parseInt(expenseStorage[expenseIndex].amount, 10);
+
+        after = before - after;
+
+        updateBalance('income-btn', after);
+
         localStorage.setItem("expenseStorage", JSON.stringify(expenseStorage));
       }
     }
@@ -335,6 +366,21 @@ function editItem(editBtn, inputNameTd, inputAmountTd, selectTypeTd, inputDateTd
   
 }
 
+function updateBalance(pointer, amount) {
+  let intAmount = parseInt(amount, 10)
+  if (pointer === 'income-btn') {
 
+    balance = balance + intAmount;
+
+  } else if (pointer === 'expense-btn') {
+    balance = balance - intAmount;
+    
+  } else {
+    balance = intAmount;
+  }
+  spanBalance.innerHTML = balance;
+  localStorage.setItem("balance", JSON.stringify(balance));
+  
+}
   
   
