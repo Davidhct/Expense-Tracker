@@ -242,3 +242,18 @@ td {
   background: none;
   cursor: pointer;
 }
+
+.sort-btn {
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer;
+  position: fixed;
+}
+
+#delete {
+  border-top-right-radius: 5px;
+}
+#name {
+  border-top-left-radius: 5px;
+}

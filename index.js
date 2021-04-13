@@ -3,8 +3,7 @@ let i = 0;
 let t = 0;
 let incomeIndex = 0;
 let expenseIndex = 0;
-let tmpIncomBalance = 0;
-let tmpExpenseBalance = 0;
+
 
 
 document.getElementById('expense-btn').addEventListener('click', checkInput)
@@ -48,8 +47,6 @@ onload = function() {
   
   if (i === 0 && t === 0){
     balance = 0;
-    tmpIncomeBalance = 0;
-    tmpExpenseBalance = 0;
     spanBalance.innerHTML = balance;
     localStorage.setItem("balance", JSON.stringify(balance));
   }
