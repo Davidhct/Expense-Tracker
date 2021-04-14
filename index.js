@@ -223,40 +223,41 @@ function createCloseButton(input) {
 
   deleteItem(closeBtn, input);
   
-
   return closeBtn;
   
 }
 
 function deleteItem(closeBtn, input) {
-  closeBtn.addEventListener('click', function() {
-    if (this.parentNode.parentNode.parentNode.classList.contains('income-table') ){
   
-    this.parentNode.parentNode.remove()
+  closeBtn.addEventListener('click', function() {
     
-    let index = incomeStorage.indexOf(input)
-    
-    updateBalance('expense-btn', incomeStorage[index].amount);
-    
-    incomeStorage.splice(index, 1);
-    localStorage.setItem("incomeStorage", JSON.stringify(incomeStorage));
-    i--;
-    
-  } else if (this.parentNode.parentNode.parentNode.classList.contains('expense-table') ){
-      this.parentNode.parentNode.remove();
-
-      let index = expenseStorage.indexOf(input);
-
-      updateBalance('income-btn', expenseStorage[index].amount);
-
-      expenseStorage.splice(index, 1);
-      localStorage.setItem("expenseStorage", JSON.stringify(expenseStorage));
-      t--;
+    if (this.parentNode.parentNode.parentNode.id === 'income-tbody') {
       
-    }
-    if (i === 0 && t === 0) {
-      updateBalance('reset', '0');
-    }
+      this.parentNode.parentNode.remove()
+      
+      let index = incomeStorage.indexOf(input)
+      
+      updateBalance('expense-btn', incomeStorage[index].amount);
+      
+      incomeStorage.splice(index, 1);
+      localStorage.setItem("incomeStorage", JSON.stringify(incomeStorage));
+      i--;
+      
+    } else if (this.parentNode.parentNode.parentNode.id === 'expense-tbody'){
+        this.parentNode.parentNode.remove();
+
+        let index = expenseStorage.indexOf(input);
+  
+        updateBalance('income-btn', expenseStorage[index].amount);
+
+        expenseStorage.splice(index, 1);
+        localStorage.setItem("expenseStorage", JSON.stringify(expenseStorage));
+        t--;
+        
+      }
+      if (i === 0 && t === 0) {
+        updateBalance('reset', '0');
+      }
   });
   
 }
@@ -379,3 +380,6 @@ function updateBalance(pointer, amount) {
 }
   
   
+function sortDate(pointer) {
+
+}
