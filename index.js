@@ -20,11 +20,11 @@ if(window.localStorage.getItem("expenseStorage") == undefined){
     
     localStorage.setItem("expenseStorage", JSON.stringify(expenseStorage));
 }
-if(window.localStorage.getItem("balance") == undefined){
-    let balance = 0;
+// if(window.localStorage.getItem("balance") == undefined){
+//     let balance = 0;
     
-    localStorage.setItem("balance", JSON.stringify(balance));
-}
+//     localStorage.setItem("balance", JSON.stringify(balance));
+// }
 
 
 let incomeArray = localStorage.getItem("incomeStorage");
@@ -33,9 +33,10 @@ let incomeStorage = JSON.parse(incomeArray);
 let expenseArray = localStorage.getItem("expenseStorage");
 let expenseStorage = JSON.parse(expenseArray);
 
-let balanceArray = localStorage.getItem("balance");
-let balance = JSON.parse(balanceArray);
-
+// let balanceArray = localStorage.getItem("balance");
+// let balance = JSON.parse(balanceArray);
+let balance = 0;
+balance = localStorage.getItem("balance");
 
 let spanBalance = document.getElementById('span-balance');
 
