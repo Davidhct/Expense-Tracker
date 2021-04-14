@@ -29,7 +29,6 @@ let expenseArray = localStorage.getItem("expenseStorage");
 let expenseStorage = JSON.parse(expenseArray);
 
 let balance = localStorage.getItem("balance");
-localStorage.setItem("balance", JSON.stringify(balance));
 
 let spanBalance = document.getElementById('span-balance');
 
