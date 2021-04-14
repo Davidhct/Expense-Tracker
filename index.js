@@ -10,7 +10,6 @@ document.getElementById('expense-btn').addEventListener('click', checkInput)
 document.getElementById('income-btn').addEventListener('click', checkInput)
 
 if(window.localStorage.getItem("incomeStorage") == undefined){
-    console.log(window.localStorage.getItem("incomeStorage") == undefined);
     let incomeStorage = [];
 
     localStorage.setItem("incomeStorage", JSON.stringify(incomeStorage));
@@ -22,13 +21,6 @@ if(window.localStorage.getItem("expenseStorage") == undefined){
     localStorage.setItem("expenseStorage", JSON.stringify(expenseStorage));
 }
 
-if(window.localStorage.getItem("balance") == undefined){
-  let balance;
-
-  localStorage.setItem("balance", JSON.stringify(balance));
-}
-
-
 
 let incomeArray = localStorage.getItem("incomeStorage");
 let incomeStorage = JSON.parse(incomeArray);
@@ -36,8 +28,8 @@ let incomeStorage = JSON.parse(incomeArray);
 let expenseArray = localStorage.getItem("expenseStorage");
 let expenseStorage = JSON.parse(expenseArray);
 
-let getBalance = localStorage.getItem("balance");
-let balance = JSON.parse(getBalance);
+let balance = localStorage.getItem("balance");
+localStorage.setItem("balance", JSON.stringify(balance));
 
 let spanBalance = document.getElementById('span-balance');
 
