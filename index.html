@@ -49,12 +49,12 @@
             <th id="name">Income name</th>
             <th id="amount">Amount</th>
             <th id="peyment">peyment</th>
-            <th id="date">Date<button class="sort-btn" type="submit" onclick="sortDate(this)"><img src="./css/images/sort_icon.png" alt=""></button></th>
+            <th id="date">Date<button class="sort-btn" id="income-sort-btn" type="submit" onclick="sortDate(this)"><img src="./css/images/sort_icon.png" alt=""></button></th>
             <th></th>
             <th id="delete"></th>
           </tr>
         </thead>
-        <tbody id="income-tbody">
+        <tbody class="income-tbody" id="income-tbody">
         </tbody>
       </table>
     </div>
@@ -66,7 +66,7 @@
             <th id="name">Expense name</th>
             <th id="amount">Amount</th>
             <th id="peyment">peyment</th>
-            <th id="date">Date<button class="sort-btn" type="submit" onclick="sortDate()"><img src="./css/images/sort_icon.png" alt=""></button></th>
+            <th id="date">Date<button class="sort-btn" id="expense-sort-btn" type="submit" onclick="sortDate(this)"><img src="./css/images/sort_icon.png" alt=""></button></th>
             <th></th>
             <th id="delete"></th>
           </tr>

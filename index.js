@@ -20,6 +20,11 @@ if(window.localStorage.getItem("expenseStorage") == undefined){
     
     localStorage.setItem("expenseStorage", JSON.stringify(expenseStorage));
 }
+if(window.localStorage.getItem("balance") == undefined){
+    let balance = 0;
+    
+    localStorage.setItem("balance", JSON.stringify(balance));
+}
 
 
 let incomeArray = localStorage.getItem("incomeStorage");
@@ -28,7 +33,9 @@ let incomeStorage = JSON.parse(incomeArray);
 let expenseArray = localStorage.getItem("expenseStorage");
 let expenseStorage = JSON.parse(expenseArray);
 
-let balance = localStorage.getItem("balance");
+let balanceArray = localStorage.getItem("balance");
+let balance = JSON.parse(balanceArray);
+
 
 let spanBalance = document.getElementById('span-balance');
 
@@ -312,7 +319,8 @@ function editItem(editBtn, inputNameTd, inputAmountTd, selectTypeTd, inputDateTd
       editBtn.removeChild(imgEditting);
       editBtn.appendChild(imgEdit); 
       
-      if (this.parentNode.parentNode.parentNode.id === 'income-table') {
+      if (this.parentNode.parentNode.parentNode.id === 'income-tbody') {
+        
         let tmp = incomeStorage[incomeIndex].amount;
         
         incomeStorage[incomeIndex].name = inputNameTd.value;
@@ -329,7 +337,7 @@ function editItem(editBtn, inputNameTd, inputAmountTd, selectTypeTd, inputDateTd
 
         localStorage.setItem("incomeStorage", JSON.stringify(incomeStorage))
       } 
-      if (this.parentNode.parentNode.parentNode.id === 'expense-table') {
+      if (this.parentNode.parentNode.parentNode.id === 'expense-tbody') {
         let tmp = expenseStorage[expenseIndex].amount;
 
         expenseStorage[expenseIndex].name = inputNameTd.value;
@@ -371,6 +379,30 @@ function updateBalance(pointer, amount) {
 }
   
   
-function sortDate(pointer) {
 
-}
+// function sortDate(pointer) {
+  
+//   if (pointer.id === 'income-sort-btn') {
+//     console.log(pointer.id);
+//     let tbody = document.querySelectorAll('.income-tbody tr td .input-date-td');
+//     for (let j = 1; j < incomeStorage.length - 1; j++) {
+//       let intAmount = parseInt(tbody[j - 1].value, 10)
+//       console.log(tbody[j].value);
+//       console.log(incomeStorage[j].date);
+//       if (intAmount > incomeStorage[j].date) {
+//         let tmp = incomeStorage[j];
+//         incomeStorage[j] = incomeStorage[j-1];
+//         incomeStorage[j-1] = tmp;
+        
+//       }
+//       let newTr = createNewTr(incomeStorage[j]); 
+//       document.getElementById('income-tbody').appendChild(newTr);
+      
+//     }
+    
+    
+//   } else {
+//     console.log(pointer.id);
+
+//   }
+// }
