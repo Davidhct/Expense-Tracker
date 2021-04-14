@@ -191,29 +191,45 @@ h1 {
   position: relative;
   margin: auto;
   width: 95vw;
-
-  /* border: 2px solid red; */
 }
-/* .income-table {
-  height: 200px;
-  overflow: auto;
-} */
+
+#delete {
+  border-top-right-radius: 5px;
+}
+#name {
+  border-top-left-radius: 5px;
+}
 
 .income-table,
 .expense-table {
   font-family: "Hind", sans-serif;
   border-collapse: collapse;
   width: 45vw;
-
-  /* height: 10vh; */
-  /* border: 2px solid blue; */
 }
+
+.income-tr,
+.expense-tr {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 5px;
+}
+
+.income-table tbody,
+.expense-table tbody {
+  display: block;
+  height: 40vh;
+  overflow: auto;
+}
+
+/* #income-body,
+#expense-body {
+  display: block;
+} */
 
 th,
 td {
   text-align: left;
   padding-left: 0.5rem;
-  /* border: 2px solid blue; */
 }
 
 .income-tr {
@@ -222,7 +238,6 @@ td {
 
 .expense-tr {
   background: rgb(235, 110, 101);
-  /* overflow: auto; */
 }
 
 #amount,
@@ -258,11 +273,4 @@ td {
   background: none;
   cursor: pointer;
   position: absolute;
-}
-
-#delete {
-  border-top-right-radius: 5px;
-}
-#name {
-  border-top-left-radius: 5px;
 }
