@@ -55,11 +55,7 @@ h1 {
 /* Chrome, Safari, Edge, Opera */
 .amount::-webkit-inner-spin-button,
 .amount::-webkit-outer-spin-button {
-  appearance: none;
-}
-/* Firefox */
-.amount[type="number"] {
-  -moz-appearance: textfield;
+  -webkit-appearance: none;
 }
 
 .amount {
