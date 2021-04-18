@@ -40,8 +40,10 @@ let balance = JSON.parse(balanceArray);
 let spanBalance = document.getElementById('span-balance');
 
 
-// load the localstorage in the todo app
-onload = function() {
+// load the localstorage in the expense tracker app
+
+
+onload = function displayTables() {
   
   if (i === 0 && t === 0){
     balance = 0;
@@ -49,6 +51,7 @@ onload = function() {
     localStorage.setItem("balance", JSON.stringify(balance));
   }
   while (i < incomeStorage.length) {
+    
     let newTr = createNewTr(incomeStorage[i]); 
 
     updateBalance('income-btn', incomeStorage[i].amount);
@@ -65,6 +68,25 @@ onload = function() {
     t++  
   }
   spanBalance.innerHTML = balance;
+}
+
+function updateTables() {
+
+  let indexIn = 0, indexEx = 0;
+  document.getElementById('income-tbody').innerHTML = "";
+  while (indexIn < incomeStorage.length) {
+
+    let newTr = createNewTr(incomeStorage[indexIn]); 
+    document.getElementById('income-tbody').appendChild(newTr);
+    indexIn++  
+  }
+  document.getElementById('expense-tbody').innerHTML = ""; 
+  while (indexEx < expenseStorage.length) {
+
+    let newTr = createNewTr(expenseStorage[indexEx]);   
+    document.getElementById('expense-tbody').appendChild(newTr);
+    indexEx++  
+  }
 }
 
 
@@ -377,32 +399,44 @@ function updateBalance(pointer, amount) {
   localStorage.setItem("balance", JSON.stringify(balance));
   
 }
-  
-  
 
-// function sortDate(pointer) {
-  
-//   if (pointer.id === 'income-sort-btn') {
-//     console.log(pointer.id);
-//     let tbody = document.querySelectorAll('.income-tbody tr td .input-date-td');
-//     for (let j = 1; j < incomeStorage.length - 1; j++) {
-//       let intAmount = parseInt(tbody[j - 1].value, 10)
-//       console.log(tbody[j].value);
-//       console.log(incomeStorage[j].date);
-//       if (intAmount > incomeStorage[j].date) {
-//         let tmp = incomeStorage[j];
-//         incomeStorage[j] = incomeStorage[j-1];
-//         incomeStorage[j-1] = tmp;
-        
-//       }
-//       let newTr = createNewTr(incomeStorage[j]); 
-//       document.getElementById('income-tbody').appendChild(newTr);
-      
-//     }
-    
-    
-//   } else {
-//     console.log(pointer.id);
+function ascending(a, b) {
+    return new Date(a.date) - new Date(b.date);
+};
+function descending(a, b) {
+    return new Date(b.date) - new Date(a.date);
+};
+let flagIn = true;
+let flagEx = true;
+function sortDate(pointer) {
 
-//   }
-// }
+  if (pointer.id === 'income-sort-btn') {
+    if (flagIn) {
+      incomeStorage.sort(ascending);
+      flagIn = false
+    } else {
+      incomeStorage.sort(descending);
+      flagIn = true;
+    }
+    
+    localStorage.setItem("incomeStorage", JSON.stringify(incomeStorage));
+    
+
+  } else {
+    if (flagEx) {
+      expenseStorage.sort(ascending);
+      flagEx = false;
+    } else {
+      expenseStorage.sort(descending);
+      flagEx = true;
+    }
+    
+    localStorage.setItem("expenseStorage", JSON.stringify(expenseStorage));
+  }
+  updateTables();
+} 
+
+
+  
+    
+
