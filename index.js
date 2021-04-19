@@ -227,7 +227,7 @@ function createNewTr(input) {
   tr.appendChild(tdDate);
   tr.appendChild(tdedit);
   tr.appendChild(tdClose);
-  
+
   return tr;
 
 }
