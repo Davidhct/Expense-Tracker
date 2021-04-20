@@ -97,7 +97,7 @@ function checkInput() {
   let inputDate = document.getElementById('input-date').value.trim();
   
   if (inputName === '' || inputAmount === '' || inputDate === '') {
-    alert("You missed one of the input lines! ")
+    alert("You missed one or more of the input lines! ")
   } else {
     if (this.id === 'income-btn') {
       incomeObj = {
