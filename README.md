@@ -24,7 +24,4 @@ Eexpense Tracker application is a single page application (SPA) that allows you 
 
 <kbd><img src="/demo images/img_1.png" width="630" height="300"></kbd>
 <kbd><img src="/demo images/img_2.png" width="630" height="300"></kbd>
-<kbd><img src="/demo images/img_3.png" width="630" height="300"></kbd>
-<kbd><img src="/demo images/img_4.png" width="630" height="300"></kbd>
-<kbd><img src="/demo images/img_5.png" width="630" height="300"></kbd>
-<kbd><img src="/demo images/img_6.png" width="630" height="300"></kbd>
+
