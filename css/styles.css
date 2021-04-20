@@ -158,7 +158,6 @@ h1 {
   flex-direction: row;
   justify-content: center;
   text-align: center;
-
   font-family: "Hind", sans-serif;
   font-weight: 10;
   font-size: 24px;
@@ -171,7 +170,6 @@ h1 {
   text-align: center;
   position: relative;
   margin: auto;
-  border: 2px red solid;
 }
 
 .income-table,
@@ -197,7 +195,6 @@ h1 {
 
 th,
 td {
-  text-align: left;
   padding-left: 0.5rem;
 }
 
@@ -207,15 +204,6 @@ td {
 
 .expense-tr {
   background: rgb(235, 110, 101);
-}
-
-#amount,
-#peyment {
-  width: 6vw;
-}
-
-#date {
-  text-align: center;
 }
 
 .input-name-td,
@@ -247,28 +235,20 @@ td {
 @media only screen and (max-width: 1247px) {
   .section-3 {
     flex-direction: column;
-    border: 2px red solid;
+    width: 70vw;
   }
   table {
     border-collapse: collapse;
     border-spacing: 0;
-    width: 100%;
-    border: 1px solid #ddd;
   }
 
-  th,
   td {
-    text-align: left;
-    padding: 8px;
+    width: 25vw;
   }
 
   .income-table tbody,
   .expense-table tbody {
-    display: block;
-    height: 30vh;
-    overflow-x: scroll;
-    overflow-y: scroll;
-    width: 100vw;
+    width: 70vw;
   }
 }
 
@@ -279,9 +259,7 @@ td {
   }
   .inner-1-div {
     flex-direction: column;
-
     padding: 0;
-    border: 2px red solid;
   }
 
   .name {
@@ -304,105 +282,114 @@ td {
     margin: 1rem;
   }
   .inner-2-div {
-    width: 50vw;
-
-    border: 2px red solid;
+    width: 45vw;
   }
   .income-btn,
   .expense-btn {
     width: 20vw;
   }
 
-  .section-3 {
-    flex-direction: column;
-    border: 2px red solid;
-  }
   table {
-    border-collapse: collapse;
-    border-spacing: 0;
-    width: 100%;
-    border: 1px solid #ddd;
+    width: 70vw;
   }
 
-  th,
   td {
-    text-align: left;
-    padding: 8px;
+    width: 20vw;
   }
 
-  .income-table tbody,
-  .expense-table tbody {
-    display: block;
-    height: 40vh;
-    overflow-x: scroll;
-    overflow-y: scroll;
-    width: 100vw;
+  #name {
+    width: 3vw;
+  }
+  #amount {
+    width: 9vw;
+  }
+  #payment {
+    width: 17vw;
+  }
+  .input-name-td {
+    width: 10vw;
+  }
+  .input-amount-td {
+    width: 17vw;
+  }
+  .select-type-td {
+    width: 10vw;
   }
 }
 
-@media only screen and (max-width: 470px) {
-  .section-1 {
-    width: 80vw;
-  }
-  .inner-1-div {
-    flex-direction: column;
-
-    padding: 0;
-    border: 2px red solid;
-  }
-
+@media only screen and (max-width: 711px) {
   .name {
     width: 60vw;
-    margin: 1rem;
   }
 
   .amount {
     width: 50vw;
-    margin: 1rem;
   }
 
   .select-type {
     width: 20vw;
-    margin: 1rem;
   }
 
   .date {
-    width: 40vw;
-    margin: 1rem;
+    width: 30vw;
   }
   .inner-2-div {
     width: 50vw;
-
-    border: 2px red solid;
-  }
-  .income-btn,
-  .expense-btn {
-    width: 20vw;
   }
 
   .section-3 {
-    flex-direction: column;
-    border: 2px red solid;
-  }
-  table {
-    border-collapse: collapse;
-    border-spacing: 0;
-    width: 100%;
-    border: 1px solid #ddd;
-  }
-
-  th,
-  td {
-    text-align: left;
-    padding: 8px;
+    width: 90vw;
   }
 
   .income-table tbody,
   .expense-table tbody {
-    display: block;
-    height: 40vh;
-    overflow-x: scroll;
-    overflow-y: scroll;
-    width: 100vw;
+    width: 90vw;
+  }
+}
+
+@media only screen and (max-width: 463px) {
+  .date {
+    width: 45vw;
+  }
+  .inner-2-div {
+    width: 60vw;
+  }
+  .income-btn,
+  .expense-btn {
+    width: 25vw;
+  }
+
+  .section-3 {
+    width: 99vw;
+  }
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+
+  td {
+    width: 20vw;
+  }
+
+  .income-table tbody,
+  .expense-table tbody {
+    width: 99vw;
+  }
+}
+
+@media only screen and (max-width: 371px) {
+  .inner-2-div {
+    width: 70vw;
+  }
+  .income-btn,
+  .expense-btn {
+    width: 30vw;
+  }
+
+  .select-type-td {
+    width: 5vw;
+  }
+  .input-date-td {
+    width: 30vw;
   }
 }
