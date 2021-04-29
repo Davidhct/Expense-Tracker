@@ -25,7 +25,7 @@ Eexpense Tracker application is a single page application (SPA) that allows you 
 
 - When trying to insert an empty field,<br>a message is sent `"You missed one or more of the input lines! "`.
 - When you add / delete / edit the amount of money, the balance is always updated automatically.
-- It is possible to sort expenses and / or income by date in ascending or descending order.<br>
+- It is possible to sort expenses and / or income by date in ascending or descending order.<br><br>
 
 <kbd><img src="/demo images/img_1.png" width="630" height="300"></kbd>
 <kbd><img src="/demo images/img_2.png" width="630" height="300"></kbd>
