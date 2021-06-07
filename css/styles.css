@@ -3,6 +3,9 @@
   padding: 0;
   box-sizing: border-box;
 }
+Body {
+  Background: gray;
+}
 
 h1 {
   display: flex;
