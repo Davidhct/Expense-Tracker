@@ -191,6 +191,7 @@ h1 {
 
 .income-table tbody,
 .expense-table tbody {
+  Background: white;
   display: block;
   height: 30vh;
   overflow: auto;
