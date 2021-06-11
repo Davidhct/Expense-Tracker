@@ -169,7 +169,7 @@ h1 {
 .section-3 {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   text-align: center;
   position: relative;
   margin: auto;
