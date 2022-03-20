@@ -4,7 +4,7 @@ Live link to try the project: https://davidhct.github.io/Expense-Tracker/
 
 ### Summary
 
-Eexpense Tracker application is a single page application (SPA) that allows you to manage and track your Expense.<br>
+Expense Tracker application is a single page application (SPA) that allows you to manage and track your Expense.<br>
 
 #### The purpose of this project is:
 
